@@ -68,10 +68,14 @@ public class TestStreamProd {
         
         
         //--------------------------------
-        System.out.println("使用limit---------");
+        System.out.println("使用limit--parallelStream-------");
         List<String> limitList = pl.parallelStream().map(Prod::getName)
             .limit(4).skip(2).collect(Collectors.toList());
         System.out.println(limitList);
+        List<String> limitList2 = pl.stream().map(Prod::getName)
+                .limit(4).skip(2).collect(Collectors.toList());
+        System.out.println(limitList2);
+        System.out.println("使用limit--stream-------");
         List<Prod> personList2 = pl.stream().sorted(
                 (o1, o2) -> o2.getName().compareTo(o1.getName())
                 ).limit(2).collect(Collectors.toList());

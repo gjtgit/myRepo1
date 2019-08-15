@@ -1,17 +1,12 @@
 package com.gjt.jdk8.funcinterface;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.DoubleFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class TestFuncInterface {
     public void func(MyInterface myIn) {
-        Function f = Function.identity();
+        Function<MyInterface, MyInterface> f = Function.identity();
         myIn = (MyInterface) f.apply(myIn); 
         myIn.method();
     }
@@ -50,6 +45,10 @@ public class TestFuncInterface {
         IntFunction<int[]> intFunc2 = int[]::new;
         int[] intArray1 = intFunc1.apply(5);
         int[] intArray2 = intFunc2.apply(5);
+        
+        DoubleFunction<Double> dbFunc1 = (x) -> x/2;
+        double dbRes = dbFunc1.apply(4.7);
+        System.out.println(dbRes);
     }
     
 }
