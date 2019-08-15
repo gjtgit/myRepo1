@@ -11,13 +11,13 @@ import java.util.concurrent.Future;
 
 public class TestCompletionService {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        ExecutorService executor = Executors.newFixedThreadPool(10);        //创建�?10.条线程的线程�?
+        ExecutorService executor = Executors.newFixedThreadPool(10);        //创建10条线程的线程池
         CompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(executor);
         for (int i =1; i <=10; i ++) {
             final  int result = i;
             completionService.submit(new Callable<Integer>() {
                 public Integer call() throws Exception {
-                    Thread.sleep(new Random().nextInt(5000));   //让当前线程随机休眠一段时�?
+                    Thread.sleep(new Random().nextInt(5000));   //让当前线程随机休眠一段时间
                     return result;
                 }
             });
@@ -26,7 +26,7 @@ public class TestCompletionService {
         
         //Test callable and future
         ExecutorService singleExecutor= Executors.newSingleThreadExecutor();
-        Future<String> future = singleExecutor.submit(new Callable<String>() {   //接受�?上callable实例
+        Future<String> future = singleExecutor.submit(new Callable<String>() {   //接受callable实例
             public String call() throws Exception {
                 return "result from callable";
             }
